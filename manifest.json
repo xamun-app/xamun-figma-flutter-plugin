@@ -1,0 +1,10 @@
+{
+  "name": "xamun_flutter_code_gen",
+  "id": "1110751316385468113",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}
