@@ -428,43 +428,13 @@ flex-grow: 0;
     <div class="inner">
       <button class="btn btn-success" id="create">Generate Code</button>
     </div>
-    <div class="inner">
-      <button class=" btn btn-success" id="btnXamun">Connect to Xamun >></button>
-    </div>
     <div class="inner" >
       <button class="btn btn-cancel" id="cancel">Cancel</button>
     </div>
   </div>
 </div>
 
-<div class="" id="connect-to-xamun" style="display: none;">
-  <h3 style="margin-bottom: 0;">Connect to Xamun</h3>
-  <div class="sub-label mb-subtitle">Enter your Xamun Account information below</div>
-  <div class="mb-subtitle">
-    <div id="connect-to-xamun-inputs">
-      <div class="sub-label">Tenant Id:
-        <input type="text" id="tenantId" />
-      </div> 
-      <div class="sub-label">API Key: 
-        <input type="text" id="apiKey" />
-      </div>
-    </div>
 
-    <div id="connect-to-xamun-loading" class="loading-container" style="display: none;">
-      <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-      <h4 style="margin-bottom: 0;">Uploading Please Wait...</h4>
-    </div>
-  </div>
-
-  <div id="connect-to-xamun-buttons">
-    <div class="inner" style="margin-top: 10px;">
-      <button class="btn btn-success" id="xamun">Submit</button>
-    </div>
-    <div class="inner">
-      <button class="btn btn-cancel" id="cancelXamun" #cancelXamun>Back</button>
-    </div>
-  </div>
-</div>
 
 
 <!-- The actual snackbar -->
@@ -562,21 +532,12 @@ flex-grow: 0;
       }
       
     }
-
     cm.getWrapperElement().style.display = "none";
     setTimeout(function(){ 
 
       parent.postMessage({ 
       pluginMessage: { type: 'generate-code' } }, '*');
     }, 1000);
-  }
-
-  document.getElementById('btnXamun').onclick = () => {
-    showXamun();
-  }
-
-  document.getElementById('cancelXamun').onclick = () => {
-    hideXamun()
   }
 
   document.getElementById('cancel').onclick = () => {
@@ -603,10 +564,6 @@ flex-grow: 0;
     parent.postMessage({ pluginMessage: { type: 'download', uiType: selectedUiType } }, '*')
   }
 
-  document.getElementById('xamun').onclick = () => {
-    displaySnackBar('Please contact xamun');
-
-  }
 
   function download(zipName, codes, imagesAndSvg, pageImage, pageJson) {
     var zip = new JSZip();
@@ -647,9 +604,6 @@ flex-grow: 0;
     document.getElementById("tab-container").style.visibility = 'hidden';
     document.getElementById("tab-container").style.display = 'none';
     document.getElementById("download").style.display = 'none';
-    document.getElementById("xamun").style.display = 'none';
-    document.getElementById("btnXamun").style.display = 'none';
-    document.getElementById("cancelXamun").style.display = 'none';
     document.getElementById("btnCopy").style.display = 'none';
     document.getElementById("buttons-container").style.marginTop= '65vh';
 
@@ -706,29 +660,6 @@ flex-grow: 0;
     document.getElementById("download").style.display = 'block';
     document.getElementById("loading").style.display = 'none';
     document.getElementById("download").innerText = `Download`;
-    document.getElementById("btnXamun").disabled = false;
-    document.getElementById("btnXamun").style.display = 'block';
-
-  }
-
-  function showXamun() {
-    document.getElementById("btnXamun").style.display = 'none';
-    document.getElementById("connect-to-xamun").style.display = 'block';
-    document.getElementById("xamun").disabled = false;
-    document.getElementById("xamun").style.display = 'block';
-    document.getElementById("flutter-code-generator").style.display = 'none';
-    document.getElementById("cancelXamun").style.display = 'block';
-  }
-  
-  function hideXamun() {
-    document.getElementById("btnXamun").style.display = 'block';
-    document.getElementById("connect-to-xamun").style.display = 'none';
-    document.getElementById("xamun").disabled = true;
-    document.getElementById("xamun").style.display = 'none';
-    document.getElementById("flutter-code-generator").style.display = 'block';
-    document.getElementById('tenantId').value = "";
-    document.getElementById('apiKey').value = "";
-    document.getElementById("cancelXamun").style.display = 'none';
   }
 
   function showUtils(){
